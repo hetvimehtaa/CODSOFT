@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url(bg1.png);
+            background-image: url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages5.alphacoders.com%2F132%2F1327980.png&tbnid=3EurzcMsEken7M&vet=12ahUKEwi0rJrv2MGEAxUAbGwGHfywB74QMyg-egUIARCHAg..i&imgrefurl=https%3A%2F%2Fwall.alphacoders.com%2Fbig.php%3Fi%3D1327980&docid=-_nNLEAARQ0y2M&w=2184&h=1224&q=aesthetic%20background%20images%5C&ved=2ahUKEwi0rJrv2MGEAxUAbGwGHfywB74QMyg-egUIARCHAg);
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -185,4 +185,3 @@
     </script>
 </body>
 </html>
-
