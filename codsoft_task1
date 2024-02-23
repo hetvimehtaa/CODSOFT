@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(bg1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #task-container {
+            max-width: 400px;
+            width: 100%;
+            background-color: skyblue;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .task-item input {
+            margin-right: 10px;
+        }
+
+        .task-item label {
+            flex-grow: 1;
+            word-break: break-all;
+        }
+
+        .task-item input:checked + label {
+            text-decoration: line-through;
+        }
+
+        .task-item button {
+            margin-right: 5px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #add-task {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        #add-task input,
+        #add-task select {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        #add-task button {
+            padding: 8px 12px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="task-container">
+        <h2>To-Do List</h2>
+        <label for="category-filter">Filter by Category:</label>
+        <select id="category-filter" onchange="filterTasks()">
+            <option value="all">All</option>
+            <option value="school">School</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="home">Home</option>
+        </select>
+
+        <ul id="task-list">
+        </ul>
+        <div id="add-task">
+            <input type="text" id="new-task" placeholder="Add a new task">
+            <select id="category">
+                <option value="school">School</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="home">Home</option>
+            </select>
+            <button onclick="addTask()">Add</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadTasks();
+        });
+
+        function addTask() {
+            var newTaskInput = document.getElementById("new-task");
+            var categorySelect = document.getElementById("category");
+            var taskList = document.getElementById("task-list");
+
+            if (newTaskInput.value.trim() !== "") {
+                var li = document.createElement("li");
+                li.className = "task-item";
+                li.innerHTML = '<input type="checkbox"><label>' + newTaskInput.value + ' - ' + categorySelect.value + '</label><button onclick="editTask(this)">Edit</button><button onclick="deleteTask(this)">Delete</button>';
+                taskList.appendChild(li);
+
+                saveTasks();
+
+                newTaskInput.value = "";
+            }
+        }
+
+        function deleteTask(button) {
+            var taskItem = button.parentNode;
+            var taskList = document.getElementById("task-list");
+            taskList.removeChild(taskItem);
+
+            saveTasks();
+        }
+
+        function editTask(button) {
+            var taskItem = button.parentNode;
+            var label = taskItem.querySelector('label');
+            var taskDetails = label.innerText.split(' - ');
+
+            var editedTask = prompt('Edit task:', taskDetails[0]);
+            var editedCategory = prompt('Edit category:', taskDetails[1]);
+
+            if (editedTask !== null && editedCategory !== null) {
+                label.innerText = editedTask + ' - ' + editedCategory;
+
+                saveTasks();
+            }
+        }
+
+        function filterTasks() {
+            var categoryFilter = document.getElementById("category-filter").value;
+            var taskItems = document.querySelectorAll(".task-item");
+
+            taskItems.forEach(function (taskItem) {
+                var label = taskItem.querySelector('label');
+                var taskCategory = label.innerText.split(' - ')[1];
+
+                if (categoryFilter === "all" || taskCategory === categoryFilter) {
+                    taskItem.style.display = "flex";
+                } else {
+                    taskItem.style.display = "none";
+                }
+            });
+        }
+
+        function saveTasks() {
+            var taskList = document.getElementById("task-list").innerHTML;
+            localStorage.setItem("tasks", taskList);
+        }
+
+        function loadTasks() {
+            var taskList = localStorage.getItem("tasks");
+            if (taskList) {
+                document.getElementById("task-list").innerHTML = taskList;
+            }
+        }
+    </script>
+</body>
+</html>
 
