@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio Website</title>
+    <style>
+
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding-top: 50px; 
+        }
+        .navbar {
+            background-color: khaki;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: firebrick;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: white;
+        }
+        .about {
+            background-color: darkseagreen;
+            background-size: cover;
+            background-position: center;
+            color: black;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .projects {
+            background-color: lightblue;
+        }
+
+        .button {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .skills {
+            text-align: center;
+            background-color: lightpink; 
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideInUp 1s ease; 
+        }
+
+    @keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+    .skills h2 {
+        margin-bottom: 20px;
+        color: #333; 
+        text-transform: uppercase;
+        animation: fadeIn 1s ease; 
+    }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .skills h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: black; 
+            animation: fadeIn 1s ease; 
+        }
+
+        .skills p {
+            margin: 5px 0;
+            color: black; 
+            animation: fadeIn 1s ease; 
+        }
+
+        
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background-color: khaki;
+        }
+        .contact-info {
+            background-color: darkseagreen;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            color: black;
+        }
+
+        button{
+            background-color:lightblue;
+            border: none;
+            font-size: 16px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact Information</a>
+    </div>
+    <div id="about" class="about">
+        <h2>My Portfolio</h2>
+        <h4>A showcase of my skills and qualifications</h4>
+        <p>My name is <b>Hetvi Mehta</b> and I live in Pune, India. I am a 3rd year student pursuing B.Tech in Computer Science and Business Systems from MITWPU Pune. I'm a team player who can work effectively with others to achieve common goals. I'm a highly motivated and result-oriented individual with a keen eagerness towards computer science as well as management. Kindly check out my skills, achievements, and qualifications below.</p>
+    </div>
+    <div id="projects" class="projects">
+        <h4>Here's a list of the projects that I have tried my hands on so far! Click to check out the description.</h4>
+        <ul>
+            <li><button onclick="onclickfunc('A to-do list app which enables users to add a task, edit a task as well as delete a task. The user can also segregate the tasks they have added into 4 categories-home,work,school,personal. A category filter drop-down is given to display only the tasks of a particular category. Upon completion of a task, by clicking on the checkbox the task gets struck by a line over it.')">To-Do List</button></li>
+            <li><button onclick="onclickfunc('A digital clock which time in hours,minutes and seconds and also changes it colour every passing second. The site displays the greeting according to the time of the day.')">Digital Clock</button></li>
+            <li><button onclick="onclickfunc('A number guessing game which allows users to guess a random number chosen by the machine between 1 to 50 and gives high, low, too high or too low according to the guess made.')">Number Guessing Game</button></li>
+            <p id="demo"></p>
+        </ul>
+    </div>
+    <div id="skills" class="skills">
+        <h2>Skills:</h2>
+        <h4>Web Development</h4>
+        <p>HTML5</p>
+        <p>CSS</p>
+        <p>JavaScript</p>
+        <h4>Programming Languages</h4>
+        <p>Java</p>
+        <p>C++</p>
+        <p>Python</p>
+    </div>
+    <div id="contact" class="contact">
+        <div class="contact-info">
+            <p>Contact Information:</p>
+            <ul>
+                <li><strong>Email:</strong> hetvimehta1502@gmail.com</li>
+                <li><strong>Phone:</strong> 12345678</li>
+                <li><strong>Address:</strong> Pune, India</li>
+                <li><strong>LinkedIn:<a href="https://www.linkedin.com/in/hetvi-mehta-103a78214">Hetvi Mehta</a></strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function onclickfunc(text) {
+            document.getElementById("demo").innerHTML = text;
+        }
+    </script>
+</body>
+</html>
