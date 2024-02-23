@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #212121;
+      transition: background-color 1s ease;
+      position: relative; 
+    }
+
+    #digital-clock {
+      font-size: 4em;
+      color: white;
+      text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    #greeting {
+      font-size: 2em;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      position: absolute;
+      top: 20px;
+      background-color: transparent;
+      border: 5px solid black;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: color 0.5s, border-color 0.5s;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black;
+      }
+      to {
+        text-shadow: 0 0 20px #03a9f4, 0 0 30px #03a9f4, 0 0 40px #03a9f4;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="greeting"></div>
+  <div id="digital-clock"></div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = now.getHours();
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+
+      const clockElement = document.getElementById('digital-clock');
+      clockElement.textContent = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+
+      let greeting;
+      if (h < 12) {
+        greeting = "GOOD MORNING!";
+      } else if (h < 17) {
+        greeting = "GOOD AFTERNOON!";
+      } else {
+        greeting = "GOOD EVENING!";
+      }
+      document.getElementById('greeting').textContent = greeting;
+      document.body.style.backgroundColor = getRandomColor();
+    }
+
+    function getRandomColor() {
+      return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
